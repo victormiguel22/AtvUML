@@ -1,0 +1,83 @@
+@startuml
+
+class Aluno {
+  - String nome
+  - String matricula
+  - Curso curso
+  - List<Matricula> matriculas
+  + Aluno(String nome, String matricula, Curso curso)
+  + void matricularDisciplina(Disciplina disciplina)
+  + List<Matricula> getMatriculas()
+  + String getNome()
+  + Curso getCurso()
+}
+
+class Curso {
+  - String nome
+  - List<Fase> fases
+  + Curso(String nome)
+  + void adicionarFase(Fase fase)
+  + List<Fase> getFases()
+  + String getNome()
+}
+
+class Fase {
+  - int numero
+  - List<Disciplina> disciplinas
+  + Fase(int numero)
+  + void adicionarDisciplina(Disciplina disciplina)
+  + List<Disciplina> getDisciplinas()
+  + int getNumero()
+}
+
+class Disciplina {
+  - String nome
+  - List<Professor> professores
+  - boolean ofertada
+  + Disciplina(String nome)
+  + void adicionarProfessor(Professor p)
+  + List<Professor> getProfessores()
+  + String getNome()
+  + boolean isOfertada()
+  + void setOfertada(boolean ofertada)
+}
+
+class Professor {
+  - String nome
+  + Professor(String nome)
+  + String getNome()
+}
+
+class Frequencia {
+  - LocalDate data
+  - boolean presente
+  - Professor professor
+  + Frequencia(LocalDate data, boolean presente, Professor professor)
+  + LocalDate getData()
+  + boolean isPresente()
+  + Professor getProfessor()
+}
+
+class Matricula {
+  - Aluno aluno
+  - Disciplina disciplina
+  - String situacao
+  - List<Frequencia> frequencias
+  + Matricula(Aluno aluno, Disciplina disciplina)
+  + void registrarFrequencia(Frequencia freq)
+  + void definirSituacao(String situacao)
+  + String getSituacao()
+  + List<Frequencia> getFrequencias()
+  + Disciplina getDisciplina()
+  + Aluno getAluno()
+}
+
+Aluno "*" --> "1" Curso
+Curso "1" --> "*" Fase
+Fase "1" --> "*" Disciplina
+Disciplina "1" --> "1..4" Professor
+Aluno "1" --> "*" Matricula
+Matricula "*" --> "1" Disciplina
+Matricula "*" --> "*" Frequencia
+Frequencia "*" --> "1" Professor
+@enduml
