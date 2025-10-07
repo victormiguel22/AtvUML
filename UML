@@ -1,5 +1,4 @@
 @startuml
-
 class Aluno {
   - String nome
   - String matricula
@@ -8,7 +7,6 @@ class Aluno {
   + Aluno(String nome, String matricula, Curso curso)
   + void matricularDisciplina(Disciplina disciplina)
   + List<Matricula> getMatriculas()
-  + String getNome()
   + Curso getCurso()
 }
 
@@ -18,7 +16,6 @@ class Curso {
   + Curso(String nome)
   + void adicionarFase(Fase fase)
   + List<Fase> getFases()
-  + String getNome()
 }
 
 class Fase {
@@ -27,7 +24,6 @@ class Fase {
   + Fase(int numero)
   + void adicionarDisciplina(Disciplina disciplina)
   + List<Disciplina> getDisciplinas()
-  + int getNumero()
 }
 
 class Disciplina {
@@ -37,15 +33,12 @@ class Disciplina {
   + Disciplina(String nome)
   + void adicionarProfessor(Professor p)
   + List<Professor> getProfessores()
-  + String getNome()
-  + boolean isOfertada()
-  + void setOfertada(boolean ofertada)
+  + boolean foiOfertada()
 }
 
 class Professor {
   - String nome
   + Professor(String nome)
-  + String getNome()
 }
 
 class Frequencia {
@@ -54,7 +47,7 @@ class Frequencia {
   - Professor professor
   + Frequencia(LocalDate data, boolean presente, Professor professor)
   + LocalDate getData()
-  + boolean isPresente()
+  + boolean taPresente()
   + Professor getProfessor()
 }
 
@@ -66,9 +59,7 @@ class Matricula {
   + Matricula(Aluno aluno, Disciplina disciplina)
   + void registrarFrequencia(Frequencia freq)
   + void definirSituacao(String situacao)
-  + String getSituacao()
   + List<Frequencia> getFrequencias()
-  + Disciplina getDisciplina()
   + Aluno getAluno()
 }
 
