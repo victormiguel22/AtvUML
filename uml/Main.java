@@ -15,8 +15,8 @@ public class Main {
         // Listas para professores e alunos
         List<Professor> professores = new ArrayList<>();
         List<Aluno> alunos = new ArrayList<>();
-        // Acessando disciplinas da fase 1
-        List<Disciplina> disciplinas = curso.getFases().get(0).getDisciplinas();
+        // Acessando disciplinas da fase atual (inicialmente fase 1)
+        List<Disciplina> disciplinas = curso.getFases().get(curso.getFases().size() - 1).getDisciplinas();
 
         while (true) {
             System.out.println("\nMenu:");
@@ -28,6 +28,7 @@ public class Main {
             System.out.println("6. Definir Situacao de Matricula");
             System.out.println("7. Exibir Dados");
             System.out.println("8. Sair");
+            System.out.println("9. Passar para próxima fase");
             System.out.print("Escolha uma opcao: ");
             String opStr = scanner.nextLine();
             int op;
@@ -370,6 +371,34 @@ public class Main {
             } else if (op == 8) {
                 System.out.println("Saindo...");
                 break;
+            } else if (op == 9) {
+                // Passar para próxima fase
+                // Desofertar disciplinas da fase atual
+                for (Disciplina d : disciplinas) {
+                    d.setOfertada(false);
+                }
+                // Criar e adicionar nova fase
+                int nextNumero = curso.getFases().size() + 1;
+                Fase novaFase = new Fase(nextNumero);
+                curso.adicionarFase(novaFase);
+                // Atualizar lista de disciplinas para a nova fase
+                disciplinas = curso.getFases().get(curso.getFases().size() - 1).getDisciplinas();
+                // Mostrar relatório
+                System.out.println("Relatorio com todos os alunos e suas frequencias relacionadas:");
+                if (alunos.isEmpty()) {
+                    System.out.println("Nenhum aluno cadastrado.");
+                } else {
+                    for (Aluno aluno : alunos) {
+                        System.out.println("\nAluno: " + aluno.getNome());
+                        for (Matricula m : aluno.getMatriculas()) {
+                            System.out.println("Disciplina: " + m.getDisciplina().getNome());
+                            for (Frequencia f : m.getFrequencias()) {
+                                System.out.println("Frequencia em " + f.getData() + ": Presente=" + f.isPresente() + ", Registrado por: " + f.getProfessor().getNome());
+                            }
+                        }
+                    }
+                }
+                System.out.println("Avancado para fase " + nextNumero);
             } else {
                 System.out.println("Opcao invalida. Tente novamente.");
             }

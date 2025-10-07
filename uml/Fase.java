@@ -10,11 +10,25 @@ public class Fase {
 
     public Fase(int numero) {
         this.numero = numero;
-        // Disciplinas constantes adicionadas no construtor
-        Disciplina alg = new Disciplina("Algoritmos");
-        Disciplina mat = new Disciplina("Matematica");
-        disciplinas.add(alg);
-        disciplinas.add(mat);
+        if (numero % 2 == 1) {
+            // Conjunto para fases ímpares
+            disciplinas.add(new Disciplina("Algoritmos"));
+            disciplinas.add(new Disciplina("Matematica"));
+            disciplinas.add(new Disciplina("Calculo I"));
+            disciplinas.add(new Disciplina("Banco de dados I"));
+            disciplinas.add(new Disciplina("Programação I"));
+            disciplinas.add(new Disciplina("Estrutura de dados I"));
+            disciplinas.add(new Disciplina("Desenvolvimento web I"));
+            disciplinas.add(new Disciplina("Linguagens formais e autômatos"));
+        } else {
+            // Conjunto para fases pares
+            disciplinas.add(new Disciplina("Calculo II"));
+            disciplinas.add(new Disciplina("Banco de dados II"));
+            disciplinas.add(new Disciplina("Programação 2"));
+            disciplinas.add(new Disciplina("Estrutura de dados II"));
+            disciplinas.add(new Disciplina("Desenvolvimento web II"));
+            disciplinas.add(new Disciplina("Compiladores"));
+        }
     }
 
     public void adicionarDisciplina(Disciplina disciplina) {
