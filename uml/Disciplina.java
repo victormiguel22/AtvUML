@@ -1,8 +1,12 @@
 package uml;
+
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Disciplina {
+    private static final int MAX_PROFESSORES = 4;
+
     private String nome;
     private List<Professor> professores = new ArrayList<>();
     private boolean ofertada;
@@ -13,15 +17,15 @@ public class Disciplina {
     }
 
     public void adicionarProfessor(Professor p) {
-        if (professores.size() < 4) {
+        if (professores.size() < MAX_PROFESSORES) {
             professores.add(p);
         } else {
-            System.out.println("Máximo de 4 professores atingido para " + nome);
+            System.out.println("Máximo de " + MAX_PROFESSORES + " professores atingido para " + nome);
         }
     }
 
     public List<Professor> getProfessores() {
-        return professores;
+        return Collections.unmodifiableList(professores);
     }
 
     public String getNome() {

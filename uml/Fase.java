@@ -1,5 +1,7 @@
 package uml;
+
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Fase {
@@ -8,6 +10,11 @@ public class Fase {
 
     public Fase(int numero) {
         this.numero = numero;
+        // Disciplinas constantes adicionadas no construtor
+        Disciplina alg = new Disciplina("Algoritmos");
+        Disciplina mat = new Disciplina("Matematica");
+        disciplinas.add(alg);
+        disciplinas.add(mat);
     }
 
     public void adicionarDisciplina(Disciplina disciplina) {
@@ -15,7 +22,7 @@ public class Fase {
     }
 
     public List<Disciplina> getDisciplinas() {
-        return disciplinas;
+        return Collections.unmodifiableList(disciplinas);
     }
 
     public int getNumero() {

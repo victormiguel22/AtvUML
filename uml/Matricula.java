@@ -1,5 +1,7 @@
 package uml;
+
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Matricula {
@@ -15,6 +17,9 @@ public class Matricula {
     }
 
     public void registrarFrequencia(Frequencia freq) {
+        if (!disciplina.getProfessores().contains(freq.getProfessor())) {
+            throw new IllegalArgumentException("O professor não está associado a esta disciplina.");
+        }
         frequencias.add(freq);
     }
 
@@ -27,7 +32,7 @@ public class Matricula {
     }
 
     public List<Frequencia> getFrequencias() {
-        return frequencias;
+        return Collections.unmodifiableList(frequencias);
     }
 
     public Disciplina getDisciplina() {

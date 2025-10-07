@@ -1,5 +1,7 @@
 package uml;
+
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Curso {
@@ -8,6 +10,9 @@ public class Curso {
 
     public Curso(String nome) {
         this.nome = nome;
+        // Fase inicial adicionada no construtor
+        Fase fase1 = new Fase(1);
+        fases.add(fase1);
     }
 
     public void adicionarFase(Fase fase) {
@@ -15,7 +20,7 @@ public class Curso {
     }
 
     public List<Fase> getFases() {
-        return fases;
+        return Collections.unmodifiableList(fases);
     }
 
     public String getNome() {
