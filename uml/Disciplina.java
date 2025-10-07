@@ -32,11 +32,12 @@ public class Disciplina {
         return nome;
     }
 
-    public boolean isOfertada() {
+    public boolean foiOfertada() {
         return ofertada;
     }
 
     public void setOfertada(boolean ofertada) {
         this.ofertada = ofertada;
     }
+
 }
